@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主题色 (稍微调暗一些以适配深色背景) -->
+    <color name="primary">#BB86FC</color>
+    <color name="primary_dark">#3700B3</color>
+    <color name="secondary">#03DAC6</color>
+    <color name="accent">#FF8A80</color>
+    <color name="primary_light">#7F39FB</color>
+
+    <!-- 背景色 (深底) -->
+    <color name="background_primary">#121212</color>
+    <color name="card_background">#1E1E1E</color>
+    <color name="accent_background">#2A1A1A</color>
+
+    <!-- 文字颜色 (亮字) -->
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <!-- #B3FFFFFF = 白色加70%左右透明度，比主字更淡 -->
+
+    <!-- 系统色 -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- 难度颜色 (可保持亮色，以便在深色下有对比度) -->
+    <color name="difficulty_easy">#4CAF50</color>
+    <color name="difficulty_medium">#FFC107</color>
+    <color name="difficulty_hard">#FF9800</color>
+    <color name="difficulty_expert">#F44336</color>
+
+    <!-- 星级颜色 (依旧闪亮) -->
+    <color name="star_color">#FFD700</color>
+    <color name="star_empty_color">#666666</color>
+    <!-- 空星改为深灰，避免在深色背景下过亮 -->
+</resources>

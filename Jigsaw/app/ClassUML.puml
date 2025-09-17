@@ -1,0 +1,247 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+    class MainActivity {
+        -cardStartGame: MaterialCardView
+        -cardEditor: MaterialCardView
+        -cardContinue: MaterialCardView
+        -btnAchievements: LinearLayout
+        -btnMyPuzzles: LinearLayout
+        -btnSettings: LinearLayout
+        +onCreate()
+        +initViews()
+        +setupClickListeners()
+        +checkForSavedGame()
+    }
+
+    class GameActivity {
+        -recyclerView: RecyclerView
+        -toolbar: MaterialToolbar
+        -tvMoves: TextView
+        -tvTime: TextView
+        -tvProgress: TextView
+        -puzzleGame: PuzzleGame
+        -adapter: PuzzleAdapter
+        -puzzleId: String
+        -difficulty: Int
+        -startTime: Long
+        +onCreate()
+        +setupGame()
+        +handlePieceClick(position: Int)
+        +handlePieceLongClick(position: Int)
+        +onPuzzleCompleted()
+        +updateUI()
+    }
+
+    class EditorActivity {
+        -imagePreview: ImageView
+        -btnSelectImage: MaterialButton
+        -inputPuzzleName: TextInputEditText
+        -seekBarDifficulty: SeekBar
+        -btnSave: MaterialButton
+        -croppedBitmap: Bitmap
+        -currentDifficulty: Int
+        +onCreate()
+        +handleSelectedImage(uri: Uri)
+        +cropToSquare(bitmap: Bitmap): Bitmap
+        +savePuzzle()
+    }
+
+    class MyPuzzlesActivity {
+        -recyclerView: RecyclerView
+        -emptyView: View
+        -fabAdd: FloatingActionButton
+        -viewModel: MyPuzzlesViewModel
+        -adapter: MyPuzzlesAdapter
+        +onCreate()
+        +setupRecyclerView()
+        +observeUiState()
+        +showPuzzleOptions(puzzle: PuzzleEntity)
+        +deletePuzzle(puzzle: PuzzleEntity)
+    }
+
+    class GameSelectionActivity {
+        -tabLayout: TabLayout
+        -recyclerView: RecyclerView
+        -puzzleAdapter: PuzzleAdapter
+        +onCreate()
+        +setupTabs()
+        +loadPuzzles(category: String)
+        +startPuzzleGame(puzzle: PuzzleItem)
+    }
+
+    class PuzzleGame {
+        -pieces: MutableList~PuzzlePiece~
+        -selectedPiecePosition: Int?
+        -moveCount: Int
+        -startTime: Long
+        -gridSize: Int
+        +createPuzzlePieces()
+        +shufflePieces()
+        +onPieceClicked(position: Int): Boolean
+        +rotatePiece(position: Int): Boolean
+        +swapPieces(pos1: Int, pos2: Int)
+        +isCompleted(): Boolean
+        +getCompletionPercentage(): Float
+        +getPieces(): List~PuzzlePiece~
+    }
+
+    class PuzzlePiece {
+        +id: Int
+        +correctPosition: Int
+        +currentPosition: Int
+        +bitmap: Bitmap
+        +rotation: Float
+        +row: Int
+        +col: Int
+        +isInCorrectPosition(): Boolean
+        +rotate(): PuzzlePiece
+        +getRotatedBitmap(): Bitmap
+    }
+
+    class PuzzleEntity {
+        <<Entity>>
+        +id: String
+        +name: String
+        +imagePath: String
+        +thumbnailPath: String?
+        +difficulty: Int
+        +pieceCount: Int
+        +createdTime: Long
+        +lastPlayedTime: Long?
+        +playCount: Int
+        +bestTime: Long?
+        +isCompleted: Boolean
+    }
+
+    class GameProgressEntity {
+        <<Entity>>
+        +id: String
+        +puzzleId: String
+        +gameState: String
+        +moveCount: Int
+        +elapsedTime: Long
+        +savedTime: Long
+    }
+
+    class PuzzleDao {
+        <<interface>>
+        +getAllPuzzles(): Flow~List~PuzzleEntity~~
+        +getPuzzleById(id: String): PuzzleEntity?
+        +insertPuzzle(puzzle: PuzzleEntity)
+        +updatePuzzle(puzzle: PuzzleEntity)
+        +deletePuzzle(puzzle: PuzzleEntity)
+        +incrementPlayCount(id: String, time: Long)
+    }
+
+    class GameProgressDao {
+        <<interface>>
+        +saveProgress(progress: GameProgressEntity)
+        +getProgress(puzzleId: String): GameProgressEntity?
+        +deleteProgress(puzzleId: String)
+    }
+
+    class AppDatabase {
+        <<abstract>>
+        +puzzleDao(): PuzzleDao
+        +gameProgressDao(): GameProgressDao
+        +getDatabase(context: Context): AppDatabase
+    }
+
+    class PuzzleRepository {
+        -puzzleDao: PuzzleDao
+        -gameProgressDao: GameProgressDao
+        +getAllPuzzles(): Flow~List~PuzzleEntity~~
+        +savePuzzle(puzzle: PuzzleEntity)
+        +deletePuzzle(puzzle: PuzzleEntity)
+        +saveGameProgress(progress: GameProgressEntity)
+        +loadGameProgress(puzzleId: String): GameProgressEntity?
+    }
+
+    class MyPuzzlesViewModel {
+        -repository: PuzzleRepository
+        -_uiState: MutableStateFlow~MyPuzzlesUiState~
+        +uiState: StateFlow~MyPuzzlesUiState~
+        +loadPuzzles()
+        +deletePuzzle(puzzle: PuzzleEntity)
+        +clearMessage()
+    }
+
+    class GameViewModel {
+        -repository: PuzzleRepository
+        -puzzleGame: PuzzleGame
+        -_gameState: MutableStateFlow~GameUiState~
+        +gameState: StateFlow~GameUiState~
+        +startGame(puzzleId: String, difficulty: Int)
+        +pauseGame()
+        +resumeGame()
+        +onPieceClicked(position: Int)
+    }
+
+    class PuzzleAdapter {
+        -pieces: List~PuzzlePiece~
+        -gridSize: Int
+        -onPieceClick: (Int) -> Unit
+        -onPieceLongClick: (Int) -> Unit
+        +onCreateViewHolder(): PuzzleViewHolder
+        +onBindViewHolder()
+        +updatePieces(pieces: List~PuzzlePiece~)
+    }
+
+    class MyPuzzlesAdapter {
+        -onItemClick: (PuzzleEntity) -> Unit
+        -onItemLongClick: (PuzzleEntity) -> Unit
+        +submitList(puzzles: List~PuzzleEntity~)
+    }
+
+    class ImageProcessor {
+        <<singleton>>
+        +loadImage(path: String): Bitmap
+        +cropToSquare(bitmap: Bitmap): Bitmap
+        +splitImage(bitmap: Bitmap, gridSize: Int): List~Bitmap~
+        +saveBitmap(bitmap: Bitmap, path: String)
+        +createThumbnail(bitmap: Bitmap): Bitmap
+    }
+
+    class BitmapCache {
+        -memoryCache: LruCache~String, Bitmap~
+        +getBitmap(key: String): Bitmap?
+        +putBitmap(key: String, bitmap: Bitmap)
+        +clearCache()
+    }
+
+    MainActivity --> GameSelectionActivity : 启动
+    MainActivity --> EditorActivity : 启动
+    MainActivity --> MyPuzzlesActivity : 启动
+
+    GameSelectionActivity --> GameActivity : 启动
+    MyPuzzlesActivity --> GameActivity : 启动
+
+    GameActivity --> PuzzleGame : 使用
+    GameActivity --> PuzzleAdapter : 使用
+    GameActivity --> GameViewModel : 使用
+
+    PuzzleGame "1" --> "*" PuzzlePiece : 包含
+
+    EditorActivity --> ImageProcessor : 使用
+    EditorActivity --> PuzzleRepository : 使用
+
+    MyPuzzlesActivity --> MyPuzzlesViewModel : 使用
+    MyPuzzlesActivity --> MyPuzzlesAdapter : 使用
+
+    MyPuzzlesViewModel --> PuzzleRepository : 使用
+    GameViewModel --> PuzzleRepository : 使用
+    GameViewModel --> PuzzleGame : 管理
+
+    PuzzleRepository --> PuzzleDao : 使用
+    PuzzleRepository --> GameProgressDao : 使用
+
+    AppDatabase --> PuzzleDao : 提供
+    AppDatabase --> GameProgressDao : 提供
+
+    PuzzleAdapter --> PuzzlePiece : 显示
+    MyPuzzlesAdapter --> PuzzleEntity : 显示
+
+    ImageProcessor --> BitmapCache : 使用
+
+@enduml

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.jigsaw.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pieceContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="1dp">
+
+    <!-- 拼图块图片 -->
+    <ImageView
+        android:id="@+id/imagePiece"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <!-- 正确位置指示器 -->
+    <View
+        android:id="@+id/correctIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_correct"
+        android:visibility="gone" />
+
+    <!-- 选中状态遮罩 -->
+    <View
+        android:id="@+id/selectionOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_selected"
+        android:visibility="gone" />
+
+</com.example.jigsaw.SquareFrameLayout>

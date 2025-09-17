@@ -1,0 +1,48 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 音效开关 -->
+    <SwitchPreferenceCompat
+        android:key="sound_enabled"
+        android:title="开启音效"
+        android:summary="开启后，拼图时会有音效提示"
+        android:defaultValue="true" />
+
+    <!-- 震动开关 -->
+    <SwitchPreferenceCompat
+        android:key="vibration_enabled"
+        android:title="开启震动"
+        android:summary="开启后，拼图操作将触发震动反馈"
+        android:defaultValue="true" />
+
+    <!-- 显示模式（白天/夜间/跟随系统） -->
+    <ListPreference
+        android:key="display_mode"
+        android:title="显示模式"
+        android:summary="选择应用的显示模式"
+        android:entries="@array/display_mode_entries"
+        android:entryValues="@array/display_mode_values"
+        android:defaultValue="system" />
+
+    <!-- 背景音乐开关 -->
+    <SwitchPreferenceCompat
+        android:key="bgm_enabled"
+        android:title="背景音乐"
+        android:summary="开启后，在游戏中播放背景音乐"
+        android:defaultValue="false" />
+
+    <!-- 开发者选项 -->
+    <PreferenceCategory android:title="开发者选项">
+        <SwitchPreferenceCompat
+            android:key="debug_mode"
+            android:title="启用调试日志"
+            android:summary="在控制台输出更多调试信息"
+            android:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            android:key="cheat_mode"
+            android:title="启用作弊模式"
+            android:summary="允许直接查看答案或快速完成拼图"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

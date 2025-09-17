@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base 夜间主题 -->
+    <style name="Base.Theme.Jigsaw" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 背景换成深色 -->
+        <item name="android:windowBackground">@color/background_primary</item>
+        <!-- 背景和文字颜色，指定为夜间的深色和亮字 -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSurface">@color/background_primary</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- 调暗一些的主题色，来自 values-night/colors.xml -->
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorSecondary">@color/secondary</item>
+
+        <!-- 系统栏与边到边，仍旧透明 -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
+    <!-- 普通夜间主题 -->
+    <style name="Theme.Jigsaw" parent="Base.Theme.Jigsaw" />
+
+    <!-- 全屏夜间主题 -->
+    <style name="Theme.Jigsaw.FullScreen" parent="Theme.Jigsaw">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+
+    <!-- 夜间 Splash -->
+    <style name="Theme.Jigsaw.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/background_primary</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主题色 -->
+    <color name="primary">#6200EE</color>
+    <color name="primary_dark">#3700B3</color>
+    <color name="secondary">#03DAC6</color>
+    <color name="accent">#FF6B6B</color>
+
+    <!-- 背景色 -->
+    <color name="background_primary">#F5F5F5</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="accent_background">#FFF0F0</color>
+
+    <!-- 文字颜色 -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+
+    <!-- 系统颜色 -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- 难度颜色 -->
+    <color name="difficulty_easy">#4CAF50</color>
+    <color name="difficulty_medium">#FFC107</color>
+    <color name="difficulty_hard">#FF9800</color>
+    <color name="difficulty_expert">#F44336</color>
+
+    <!-- 星级颜色 -->
+    <color name="star_empty_color">#CCCCCC</color>
+
+    <!-- 其他颜色 -->
+    <color name="primary_light">#9FA8DA</color>
+
+    <!-- 基础文本/中性色 -->
+    <color name="gray_400">#BDBDBD</color>
+    <color name="gray_600">#757575</color>
+    <color name="gray_700">#616161</color>
+
+    <!-- 成就/评分相关 -->
+    <color name="star_color">#FFC107</color>          <!-- Amber 500，用于星星/高亮 -->
+    <color name="trophy_gold">#FFD54F</color>         <!-- 奖杯金（成就图标可用） -->
+    <color name="success_green">#4CAF50</color>       <!-- 成就进度完成/成功提示 -->
+    <color name="progress_track">#E0E0E0</color>      <!-- 进度条轨道 -->
+</resources>
