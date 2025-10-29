@@ -2,7 +2,7 @@
 # 2025.9.17
 软件体系结构课用，我们把小学期的项目翻了出来，放上来以便于后续的开发
 
-#2025.10.29
+# 2025.10.29
 添加动态测试模块puzzle-core, 其中puzzle-core/src/test/resources/cases/agent_cases.jsonl中存放外部agent生成的测试用例，
 puzzle-core/src/main/kotlin/com/example/puzzlecore用来存放构建的JVM测试工程，也是测试的主模块
 
