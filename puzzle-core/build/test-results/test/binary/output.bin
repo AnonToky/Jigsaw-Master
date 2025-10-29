@@ -1,0 +1,16 @@
+!Running case: agent_cases.jsonl
+Aagent_cases.jsonl: gridSize=3, rotateMode=false, completed=true
+!Running case: agent_cases.jsonl
+Aagent_cases.jsonl: gridSize=3, rotateMode=false, completed=true
+!Running case: agent_cases.jsonl
+@agent_cases.jsonl: gridSize=3, rotateMode=true, completed=true
+!Running case: agent_cases.jsonl
+Aagent_cases.jsonl: gridSize=4, rotateMode=false, completed=true
+!Running case: agent_cases.jsonl
+@agent_cases.jsonl: gridSize=4, rotateMode=true, completed=true
+!Running case: agent_cases.jsonl
+Aagent_cases.jsonl: gridSize=6, rotateMode=false, completed=true
+!Running case: agent_cases.jsonl
+@agent_cases.jsonl: gridSize=6, rotateMode=true, completed=true
+!Running case: agent_cases.jsonl
+@agent_cases.jsonl: gridSize=4, rotateMode=true, completed=true
